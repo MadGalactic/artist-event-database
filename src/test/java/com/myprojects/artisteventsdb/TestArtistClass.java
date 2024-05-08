@@ -22,30 +22,55 @@ public class TestArtistClass extends AbstractTest{
         Class artistClass = getClassByName("models.Artist");
         assertEquals(AbstractEntity.class, artistClass.getSuperclass());
     }
+
     /*
-    Verifies that Artist has a first name field
-     */
+     * Verifies that Artist has a first name field
+     * */
     @Test
-    public void TestArtistHasNameField() throws ClassNotFoundException {
-        Class artistClass = getClassByName("models.Artist");
-        Field nameField = null;
+    public void TestArtistHasFirstNameField() throws ClassNotFoundException{
+        Class abstractEntityClass = getClassByName("models.Artist");
+        Field firstNameField = null;
         try {
-            nameField = artistClass.getDeclaredField("name");
+            firstNameField = abstractEntityClass.getDeclaredField("firstName");
         } catch (NoSuchFieldException e) {
-            fail("Artist class does not have a name field");
+            fail("Artist class does not have a first name field");
         }
 
-        Annotation sizeAnnotation = nameField.getAnnotation(Size.class);
-        assertNotNull(sizeAnnotation, "name field must use @Size to validate input");
+        Annotation sizeAnnotation = firstNameField.getAnnotation(Size.class);
+        assertNotNull(sizeAnnotation, "first name field must use @Size to validate input");
 
         // we allow for either @NotBlank or @NotNull to ensure the field is not empty
-        Annotation notEmptyAnnotation = nameField.getAnnotation(NotNull.class);
+        Annotation notEmptyAnnotation = firstNameField.getAnnotation(NotNull.class);
         if (notEmptyAnnotation == null) {
-            notEmptyAnnotation = nameField.getAnnotation(NotBlank.class);
+            notEmptyAnnotation = firstNameField.getAnnotation(NotBlank.class);
         }
 
-        assertNotNull(notEmptyAnnotation, "name must have an annotation to ensure the field is not empty");
+        assertNotNull(notEmptyAnnotation, "first name must have an annotation to ensure the field is not empty");
+    }
 
+    /*
+     * Verifies that Artist has a last name field
+     * */
+    @Test
+    public void TestArtistHasLastNameField() throws ClassNotFoundException{
+        Class abstractEntityClass = getClassByName("models.Artist");
+        Field lastNameField = null;
+        try {
+            lastNameField = abstractEntityClass.getDeclaredField("lastName");
+        } catch (NoSuchFieldException e) {
+            fail("Artist class does not have a last name field");
+        }
+
+        Annotation sizeAnnotation = lastNameField.getAnnotation(Size.class);
+        assertNotNull(sizeAnnotation, "last name field must use @Size to validate input");
+
+        // we allow for either @NotBlank or @NotNull to ensure the field is not empty
+        Annotation notEmptyAnnotation = lastNameField.getAnnotation(NotNull.class);
+        if (notEmptyAnnotation == null) {
+            notEmptyAnnotation = lastNameField.getAnnotation(NotBlank.class);
+        }
+
+        assertNotNull(notEmptyAnnotation, "last name must have an annotation to ensure the field is not empty");
     }
 
     /*

@@ -3,6 +3,9 @@ package com.myprojects.artisteventsdb;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.junit.jupiter.api.Test;
 
 import java.lang.annotation.Annotation;
@@ -41,6 +44,5 @@ public class TestAbstractEntity extends AbstractTest{
         Annotation generatedValueAnnotation = idField.getAnnotation(GeneratedValue.class);
         assertNotNull(generatedValueAnnotation, "id field must have @GeneratedValue annotation");
     }
-
 
 }

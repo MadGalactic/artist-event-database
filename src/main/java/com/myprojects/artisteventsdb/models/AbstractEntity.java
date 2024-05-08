@@ -3,6 +3,8 @@ package com.myprojects.artisteventsdb.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public abstract class AbstractEntity {
     @Id
     @GeneratedValue
     private int id;
+
 
     public int getId() {
         return id;
